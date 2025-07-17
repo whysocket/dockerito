@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  rabbitmq:
+    image: rabbitmq:4.1.2-management # Updated to 4.1.2 management-enabled image
+    container_name: rabbitmq
+    hostname: rabbitmq
+    ports:
+      - "5672:5672" # Standard AMQP port
+      - "15672:15672" # Management UI port
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+      # IMPORTANT: Set RabbitMQ's internal memory high watermark
+      # This ensures RabbitMQ respects the Docker container's memory limit.
+      # For local development, set to 512MiB to match mem_limit
+      RABBITMQ_VM_MEMORY_HIGH_WATERMARK.absolute: 512MiB
+      # Enable detailed logging for development
+      RABBITMQ_LOG_LEVEL: info
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq # Persistent data
+      - rabbitmq_logs:/var/log/rabbitmq # Persistent logs
+      # Mount enabled plugins for development
+      - ./enabled_plugins:/etc/rabbitmq/enabled_plugins:ro
+    # Local development resource limits (used by docker-compose)
+    mem_limit: 768m      # Memory limit for local development
+    cpus: 0.5           # CPU limit for local development
+    restart: unless-stopped # Better for local development than 'always'
+    # Development-friendly health check
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+
+volumes:
+  rabbitmq_data:
+  rabbitmq_logs:
