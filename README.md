@@ -16,7 +16,7 @@ dockerito/
 ├── rabbitmq/
 │   ├── compose.yaml
 │   └── enabled_plugins
-└── manage-services.ps1      # The utility script
+└── dockerito      # The utility script
 ```
 
 ## Manual
@@ -24,28 +24,28 @@ dockerito/
 ### Basic Usage
 ```powershell
 # List all discovered services
-.\manage-services.ps1
+.\dockerito
 
 # Start all services
-.\manage-services.ps1 -Action up
+.\dockerito -Action up
 
 # Stop all services
-.\manage-services.ps1 -Action down
+.\dockerito -Action down
 
 # Check service status
-.\manage-services.ps1 -Action status
+.\dockerito -Action status
 
 # View logs
-.\manage-services.ps1 -Action logs
+.\dockerito -Action logs
 ```
 
 ### Single Service Operations
 ```powershell
 # Work with specific services
-.\manage-services.ps1 -Action up -Service postgres
-.\manage-services.ps1 -Action down -Service rabbitmq
-.\manage-services.ps1 -Action restart -Service postgres
-.\manage-services.ps1 -Action logs -Service rabbitmq
+.\dockerito -Action up -Service postgres
+.\dockerito -Action down -Service rabbitmq
+.\dockerito -Action restart -Service postgres
+.\dockerito -Action logs -Service rabbitmq
 ```
 
 ### Available Actions
@@ -66,37 +66,37 @@ dockerito/
 ### Development Workflow
 ```powershell
 # Start your development environment
-.\manage-services.ps1 -Action up
+.\dockerito -Action up
 
 # Check what's running
-.\manage-services.ps1 -Action status
+.\dockerito -Action status
 
 # Stop everything when done
-.\manage-services.ps1 -Action down
+.\dockerito -Action down
 ```
 
 ### Working with Individual Services
 ```powershell
 # Start only database for backend work
-.\manage-services.ps1 -Action up -Service postgres
+.\dockerito -Action up -Service postgres
 
 # Start only message queue for async work
-.\manage-services.ps1 -Action up -Service rabbitmq
+.\dockerito -Action up -Service rabbitmq
 
 # Restart a service after config changes
-.\manage-services.ps1 -Action restart -Service postgres
+.\dockerito -Action restart -Service postgres
 ```
 
 ### Debugging and Monitoring
 ```powershell
 # Check service health
-.\manage-services.ps1 -Action status
+.\dockerito -Action status
 
 # View logs for troubleshooting
-.\manage-services.ps1 -Action logs -Service postgres
+.\dockerito -Action logs -Service postgres
 
 # Restart everything if needed
-.\manage-services.ps1 -Action restart
+.\dockerito -Action restart
 ```
 
 ## Current Services
