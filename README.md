@@ -103,13 +103,15 @@ dockerito/
 
 ### PostgreSQL Database
 - **Port**: 5432
+- **Access**: localhost:5432
 - **Database**: myapp
 - **User**: myuser
 - **Password**: mypwd
-- **Container**: freight-shipping-db
+- **Container**: postgres
 
 ### RabbitMQ Message Broker
 - **AMQP Port**: 5672
+- **Access**: localhost:5672
 - **Management UI**: http://localhost:15672
 - **User**: guest
 - **Password**: guest

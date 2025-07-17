@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   rabbitmq:
-    image: rabbitmq:4.1.2-management # Updated to 4.1.2 management-enabled image
+    image: rabbitmq:4.1.2-management
     container_name: rabbitmq
     hostname: rabbitmq
     ports:

@@ -2,8 +2,8 @@ version: '3.8'
 
 services:
   postgres:
-    container_name: freight-shipping-db
-    image: postgres:17 # Specifies PostgreSQL version 17
+    container_name: postgres
+    image: postgres:latest
     environment:
       POSTGRES_DB: myapp
       POSTGRES_USER: myuser
